@@ -1,0 +1,41 @@
+						Kurze Anleitung zum starting
+						
+	yuotube link: https://www.youtube.com/watch?v=q0JhJBYi4sw					
+						
+	1. http://localhost:8888/verwaltung/
+	wenn in der link wird nichts angegeben dann wir als Standart die controllers/login seite abgerufen
+	in der App.php Zeile: 13
+	
+	2. http://localhost:8888/verwaltung/customer 
+		 wenn in link wird die customer eingefügt dann wird in
+		 App.php Zeile: 25 geprüft ob solche seite vorhanden is, wenn nein
+		 dann wird die error seite geladen, App.php Zeile: 34...
+		 wenn siete vorhanden ist dan wir die angegebene(customer) laden, App.php Zeile: 28
+		 und gleich wird an den controllers/customer die methode index gestartet
+		 mid den befel: call_user_func_array([$controller, $this->method], $URL); in App.php Zeile: 51
+		 Quasi gesagt der befel 
+		 			call_user_func_array([$controller, $this->method], $URL);
+		  ist das gleiche wie:
+		 $customer = new Customer;  // ist der class Customer in controllers/customer
+		 $customer->index();				// startet die function index in controllers/customer
+		 
+		 der new Class wir in App.php Seite: 38 erzeugt: $controller = new $this->controller;
+		 
+	3.	weiter in den controllres/customer in der methode index wird die views seite geladen
+		mit der methode, was liegt  in der core/Controller(Haupt)(weil der Haupt Controller ich extends in der 
+		customer controllers) ... alls siet so aus...
+		
+		class Customer extends Controller {	
+			public function index(){
+				
+				echo'This is the Customer controller';
+				
+				$this->view('customer'); // abgerufene methode view in der core/Controller
+				
+			}
+		}
+		
+	4.	
+		 
+		 
+		 					
