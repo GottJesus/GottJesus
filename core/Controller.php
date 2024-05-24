@@ -3,9 +3,13 @@
 *	Den 1.04.2024
 */
 
-class Controller {
+Trait Controller {
+	use View;
 	
-	public function view($name){
+	public function view($name, $data = []){
+		
+		if(!empty($data))
+		extract($data);
 		
 		$filename = "views/".$name.".view.php";
 		if(file_exists($filename)){

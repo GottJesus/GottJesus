@@ -9,15 +9,30 @@
 		
 		/**
 		 * ACHTUNG: der Verbindung zum MySql-Datenbank ist in Database.php + die query function
-		 * 	 
+	     *
+		 *	zugriff von models:   		  $row =  $this->where($mail);
+		 *	 									  var_dump($row);	
+		 *
+		 *	zugriff von controllers			public function index(){
+		 *												// in models liegt der Datenbank Name + columns	 
+		 *												$loginmodel = new LoginModel;
+		 *												 	 
+		 * 	 											$row = $loginmodel->where($userdaten);
+		 *												var_dump($row);
+		 *										 }
+		 *
+		 *	ACHTUNG: unterschied zwischen function where und first
+		 *	first: 					$row =  $this->first($mail);
+	     *							echo'E-Mail gefunden: '.$row->email.'<br>';	 
+		 * where:				Ausgabe wahrscheinlich müssen per for schleife erledigen
 		 */
 		
 		//protected $table = "user";  // in models/...class initialisiert, nach bedarf weiches Tabelle braucht 
-		protected $limit = 10;
-		protected $offset = 0;
-		protected $order_type = "desc";
-		protected $order_column = "id";
-		public $errors 		= [];
+		protected $limit 					= 10;
+		protected $offset 				= 0;
+		protected $order_type 		= "desc";
+		protected $order_column 	= "id";
+		public $fehlers 					= [];
 		
 		
 		/**
@@ -66,6 +81,11 @@
 		/**
 		 *	code: die where function brauch nur einen parameter um Daten von einem user holen
 		 *			 eine ID, Name oder login .....z.b.s $arr['id'] = "2"; oder $arr['login'] = "Satan";
+		 *			// so sieht der array zum senden aus:
+		 *				Array
+		 *						(
+		 *								 [email] => fgeagfae@eafgae.ddd
+		 *						)	 
 		 *  // hier unten einen Beispiel von einen class Login	 
 		 *	class Login {
 		 *			use Controller;
@@ -121,6 +141,9 @@
 		/**
 		 * die first function ist genau wie where
 		 *	Rückgabe wert ist als Object 
+		 *	OUTPUT:  		$row =  $this->first($mail);
+		 *						echo'E-Mail gefunden: '.$row->email.'<br>';
+		 *		 			    show($row);
 		 *
 		 * 		stdClass Object
 		 *			(
@@ -165,6 +188,8 @@
 		
 		/**
 		 * die inset function brauch alle Daten von der neuen User zugesendet
+		 *	ACHTUNG: alle columns müssen in array vorhanden sein(wens leer sind)
+		 *	 
 		 * einen Beispiel von der Login class
 		 *
 		 * 		class Login {
@@ -185,9 +210,8 @@
 		 *	 
 		 *	 			$model->insert($arr);  // die Speicherung Daten werden an Model/inset gesendet
 		 *				
-		 *				ACHTUNG: leider keine Rückgabe
-		 *	 			//$result = $model->insert($arr);	
-		 *	 			//show($result);
+		 *				ACHTUNG: wenn von models/????Model.php muss ausgeführt werden...(siehe b.s. GlobalFehler.php)
+		 *	 			$this->insert($arr);
 		 *			}
 		 *		}
 		 */
@@ -233,7 +257,7 @@
 		 *			 }
 		 *		 }
 		 *
-		 *		ACHTUNG: leider keine rückgabewert 
+		 *		ACHTUNG: Löschen Möglich NUR nach ID
 		 */
 		public function update($id, $data, $id_column = 'id')
 		{

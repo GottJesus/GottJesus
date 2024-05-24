@@ -21,11 +21,11 @@ public function loadController(){
 	$URL = $this->splitURL();
 	
 	/** select controller  **/
-	$filename = "controllers/".ucfirst($URL[0]).".php";	
+	$filename = "controllers/".strtolower($URL[0]).".php";	
 	if(file_exists($filename)) {
 		
 		require $filename;
-		$this->controller = ucfirst($URL[0]);
+		$this->controller = strtolower($URL[0]);
 		unset($URL[0]);
 				
 	} else {

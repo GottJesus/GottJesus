@@ -1,7 +1,0 @@
-
-	das ist eine Kopie von Verwaltung was werde am Letzten
-	nach dem Youtube project nachgebaut....19.04.2024
-
-	Link: https://www.youtube.com/watch?v=q0JhJBYi4sw
-	Download: 
-	https://freephptutorials.com/download/php-mvc-framework-from-scratch-source-code

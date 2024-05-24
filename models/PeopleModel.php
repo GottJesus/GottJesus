@@ -3,10 +3,10 @@
  *	Den 1.04.2024
  */
  
- class CustomerModel {
+ echo'Die People Model<br>';
+ class PeopleModel {
 	 
 	use Model;
     	 
-	 
  }
 ?>

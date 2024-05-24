@@ -3,35 +3,66 @@
  *	Den 1.04.2024
  */
 
-class Login extends Controller {
-	
+class Login {
+	use Controller;
 
 	public function index(){
-		
-		$user = new User;
-		//$user = User;
-		
-	/* 	$arr['datum'] = date("Y-m-d H:i:s");
-		$arr['letztelogin'] = date("Y-m-d H:i:s");
-		$arr['cookie'] = "987654321";
-		$arr['login'] = "Letzte";
-		$arr['password'] = "sob";
-		$arr['passrecovery'] = "0987654321";
-		$arr['role'] = "default";
-		$arr['other'] = ""; */
-		
-
-		 $arr['id'] = 6;
-		 $arr['login'] = "Apostel";
-		 
-		$result = $user->where($arr);	
-		show($result);
-		
-		// die login Seite laden von views/login.view.php
-		//echo'This is the Login controller';
-		$this->view('login');
-	}
+			
+		$loginmodel = new LoginModel;
+		$data = [];
 	
+		/**
+		 *	die E-Mail-Adresse wird auf Gültigkeit geprüft und Telefon auf
+		 * numerisch Zahle, dann werden sie weiter an logincode.php versendet  
+		 */		
+		if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
+			
+			$aktivierungsCode = zufallCode(); 						// core/functions
+			$inputDaten = $_POST['telemail'];						// view/login.view.php
+							
+			if(is_numeric($inputDaten)) {
+								
+				if( $loginmodel->validateTelefon($inputDaten, $aktivierungsCode) ){
+					
+					/**
+					 *  ACHTUNG: Das Telefon Registrierung steht Zurzeit nicht zum verfügung...
+					 *	 
+					 *  FAZIT: wenn soll einen Test durchgeführt sein.. dann hier untere Teil freimachen 
+					 *	 und in der LoginModel.php Zeile: 183 auch frei machen + Fehler Ausgabe Löschen 
+					 *	 Zeile: 199	 	 	 
+					 */
+					
+					/* $loginData['usersdata'] = $inputDaten; 
+					$loginData['userscode'] = $aktivierungsCode;
+					
+					Session::sessionSet('loginDaten', $loginData);
+					redirect('logincode'); */
+				}
+				
+			} else {
+				
+				if( $loginmodel->validateMail($inputDaten, $aktivierungsCode) ) {
+					
+					$loginData['usersdata'] = $inputDaten; 
+					$loginData['userscode'] = $aktivierungsCode; 
+					
+					Session::sessionSet('loginDaten', $loginData);
+					redirect('logincode');				
+				}
+				
+			}
+					
+		} 
+				
+		// Fehler Ausgabe: wenn return nicht leer ist, von LoginModel/filter_var oder Telefon
+		$data['fehlers'] =  $loginmodel->fehlers;
+	
+		// Login Seite Starten
+		$this->title = "Login";
+	 	( !isset($_COOKIE['loggedIn']) ) ? $this->view('login', $data) : redirect('people');
+
+		
+	}
 	
 }
 ?>

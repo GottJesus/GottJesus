@@ -3,9 +3,11 @@
  *	Den 1.04.2024
  */
 
- class View{
+ Trait View{
 
+    public string $title;
+    public string $msg;
+    public array $js;
     
-	
  }
 ?>

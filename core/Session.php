@@ -2,31 +2,54 @@
 /**
  *	Den 1.04.2024	
  */
-
+ 
+ 	 
 	class Session{
 		
-		public static function init()
+		public static function sessionInit()
 		{
-			@session_start();
+			session_start();
 		}
 		
 		
-		public static function set($key, $value)
+		public static function sessionSet($key, $value)
 		{
 			$_SESSION[$key] = $value;
 		}
 		
 		
-		public static function get($key)
+		public static function sessionGet($key)
 		{
 			if(isset($_SESSION[$key]))
 			return $_SESSION[$key];
 		}
 		
-		
-		public static function destroy()
+		public static function sessionUnset($key)
 		{
-			session_destroy();
+			unset($_SESSION[$key]);
+		}
+		
+		
+		public static function sessionDestroy()
+		{
+			$_SESSION = array();			// SESSION leeren, weil
+			session_destroy();				// session_destroy <- funktioniert nicht immer
+		}
+		
+		// Sperre session nach 24 Stunden zerstören
+		public static function sperreDestroy()
+		{
+			if (!isset($_SESSION['timerDestroy'])) 
+			{
+				$_SESSION['timerDestroy']=time();
+			}
+			  
+			if ($_SESSION['timerDestroy'] < (time() - 3600000)) 	// Eine Stunden in Millisekunden
+			{
+				
+				Session::sessionDestroy();
+				$_SESSION['timerDestroy']=time();
+			 }
 		}
 	
 	}

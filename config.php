@@ -4,13 +4,14 @@
  */
  
 	//$conf['show_php_errors'] = E_ALL & ~ E_DEPRECATED;
-	
+	error_reporting(E_ALL);
+
 	define('APP_NAME', "Verwaltung von Gott Jesus" );	
 	define('DEBUG', true);
 	
 	if($_SERVER['SERVER_NAME'] == 'localhost'){
 		
-		define('URL', 'http://localhost:8888/verwaltung/');
+		define('URL', 'http://localhost:8888/gottjesus/');
 		
 		// Database localhost
 		define('DB_TYPE', 'mysql');
@@ -25,7 +26,7 @@
 		
 	} else{
 		
-		define('URL', 'http:// www.verwaltung.gottjesus.de/');
+		define('URL', 'http:// www.gottjesus.de/');
 		
 		// Datebase netcup
 		define('DB_TYPE', 'mysql');

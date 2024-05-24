@@ -4,55 +4,148 @@
  */
 
 *						{margin: 0px; padding: 0px;}
-html, body			{min-width: 37.5em ; width: 100%; min-height: 37.5em; height: 100%;  background-image: url('../../public/img/body.svg'); }
-
+html, body			{min-width: 37.5em ; width: 100%; min-height: 37.5em; height: 100%; }
+.gotigBackground		{  background-image: url('../../public/img/body.svg'); }
+.darkerBackground		{ background-color: #151515; }
 	/*Allgemeine css angaben*/
 	
 .red					{ color: #FF0000; }
-.blue					{ color: #1608D3; }
-.blau					{ color: #0000FF;}
-.navy					{ color: #000080;}
+.crimson			{ color: #DC143C; }	/* dunkler rot */
+.leuchtblue			{ color: #1608D3; }
+.blue					{ color: #0000FF; }
+.micblue			{ color: #3399FF;}
+.navy					{ color: #000080; }
 .facblue				{ color: #3b5998; }
-.gold					{ color: #FFD700; }
+.whatblue			{ color: #34B7F1 }
+.gold					{ color: #FFD700;}
 .grau					{ color: #858585; }
-.weiss				{ color: #FFFFFF; }
+.weiss				{ color: #FFFFFF;}
 .braun				{ color: #996600; }
+/* Grün */
+.lightgreen			{ color: #66FF33; }
+.lawngreen			{ color: #7CFC00; }
+.fuchsia				{ color: #FF00FF; }
+.yellow				{ color: #FFFF00; }
 	
 .hoch1				{ height: 1.1em; }
 .hoch2				{ height: 2.2em; }
 .hoch4				{ height: 3.2em; }		/* 50px */
 .hoch5				{ height: 5.0em; }		/* 80px */	
 
-.boxShadow		{ box-shadow: 0.1rem 0.1rem 0.8rem rgb(75 80 89 / 20%); }
+/* .boxShadow		{ box-shadow: 0.1rem 0.1rem 0.8rem rgb(75 80 89 / 20%); } */
+.boxShadow		{ box-shadow: 0px 0px 8px 0px rgba(66,68,90,1); }
 .boxTable			{ box-sizing: border-box; }
 .row					{ display: flex; flex-direction: row; }  /* [x x x    ] left positionier */	
+a						{ text-decoration: none; }
+
+.buttonBlau		{ background: linear-gradient(to bottom, #3D94F6 5%, #1E62D0 100%); background-color: #3D94F6; border: 1px solid #337FED; }
+.buttonGrun		{ background: linear-gradient(to bottom, #77D42A 5%, #5CB811 100%); background-color: #77D42A; border: 1px solid #268A16; }
+
+.buttonAll			{ width: 100%; padding: 0.375rem 0.75rem; box-sizing: border-box; line-height: 1.6; text-shadow: 0px 1px 0px #3D768A;
+						  box-shadow: 0px 10px 14px -7px #276873; display: inline-block; border-radius: 6px; color: #FFF; 
+						  font-size: inherit; font-weight: bold; text-decoration: none; text-shadow: 0px 1px 0px #1570CD; cursor: pointer;
+						}
+.buttonBlau:hover		{ background: linear-gradient(to bottom, #1E62D0 5%, #3D94F6 100%); background-color: #1E62D0; }
+.buttonBlau:active 		{ position: relative;	top: 1px; }
+.buttonGrun:hover		{ background: linear-gradient(to bottom, #5CB811 5%, #77D42A 100%); background-color: #5CB811; }
+.buttonGrun:active 		{ position: relative;	top: 1px; }
+
+.inputAll		    { width: 100%; padding: 0.75em; box-sizing: border-box; font-size: inherit; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+						  color: #495057; background-color: inherit; background-clip: padding-box; border: none; outline: none; border: #CED4DA solid 1px;
+						  border-radius: 0.3em; box-shadow: inset 0 -5px 45px rgba(0,0,0,0.125), 0px 10px 14px -7px #276873; -webkit-transition: box-shadow .5s ease;
+						  -moz-transition: box-shadow .5s ease; -o-transition: box-shadow .5s ease; -ms-transition: box-shadow .5s ease; transition: box-shadow .5s ease;
+						  letter-spacing: 0.1em;
+						}
+.inputAll:focus	{ box-shadow: inset 0 -5px 45px rgb(255,253,230); }
+
+.allFehler			{ background-color: #FFCCCC;  padding: 5px; max-height: 60px; overflow: scroll;
+						  border: 1px solid red; border-radius: 4px;
+						}
+.msgAnzeige		{ visibility: hidden; background-color: #202020; border: 1px solid black; border-radius: 0.35em; color: white; padding: 0.35em; }
 
 
-	/* views/header.php
+/* Später Löschen nut für Test zwecke angelegt, für msgAnzeige langsam einblenden und ausblende */
+@keyframes einblenden {
+	from { opacity:0; }
+	to { opacity:1; }
+}
+
+@keyframes ausblenden {
+	from { opacity:1; }
+	to { opacity:0; }
+}
+
+div.anzeigen			{ animation-name: einblenden 1.5s; }
+div.verbergen			{ animation-name: : ausblenden 1.5s; }
+
+input:matches(
+  [type="email"],
+  [type="number"],
+  [type="password"],
+  [type="search"],
+  [type="tel"],
+  [type="text"],
+  [type="url"]
+) 						{ -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+
+
+
+
+	/* views/loginheader.php
 	-------------------------- */
 div.headerInclude		{ /* border: 1px solid red; */ }	
-div.headerTab			{ background-image: url('../../public/img/schwarz10.png'); height: 3.0em; border-bottom: 1px solid #999;  }
-
+div.headerTab			{ background-image: url('../../public/img/schwarz10.png'); height: auto; border-bottom: 1px solid #999;  }
 
 	/* views/footer.php
 	------------------------ */
 div.footerInclude		{ min-width: 37.0em; height: 2.5em; margin-top: -2.5em; }	
 div.footerTab				{ background-image: url('../../public/img/schwarz10.png');   border-top: 1px solid #999; }	
-div.footerTab small	{ color: #999; }
+div.footerTab small		{ color: #999; }
 
 
-	/* views/login_view.php
+
+	/* views/login.view.php
 	------------------ */
 	/* min-height: 600px(37.5em)  min-width: 576px(36.0em) */
 div.container				{ min-height: 100%; }
-div.loginBox				{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-									width: 31.0em; padding: 10px; border: 1px solid red;  }
-div.loginFehler			{ color: red; padding: 10px; font-size: 1.1em; }									
-input.loginInput			{ background: transparent; border: 0; padding: 5px; font-size: 1.1em; }
+div.login					{ max-width: 37.5em; margin-right:auto; margin-left:auto; padding: 0.25em; }
+div.loginBox				{ width: 100%; border: 1px solid rgb(0, 0, 0, 0.125); border-radius: 0.25em; }
+div.loginKop				{ background-color: rgb(0, 0, 0, 0.03); border-bottom: 1px solid rgb(0, 0, 0, 0.125); padding: 0.75em 1.25em; }
+div.loginBody				{ flex: 1 1 auto; padding: 1.25em; }
+div.loginSperre			{ background-color:mistyrose; border: 1px solid coral; border-radius: 6px; padding: 0.75em; }
+div.loginSperre h3		{ text-align: center; color: brown; }
+div.loginSperre p		{ font-size: 1.1em; }
+div.loginGroup			{ text-align: center; /* border: 1px solid black; */  }
+div.loginInput				{ display: inline-block; width: 50.0%; /* border: green solid 1px; */  }
+input.inputFeld			{ width: 100%; padding: 0.375em 0.75em; box-sizing: border-box; font-size: inherit; line-height: 1.6; 
+								  text-shadow: 1px 1px 1px rgba(0,0,0,0.3); color: #495057; background-color: inherit; background-clip: padding-box; 
+					 			  border: none; outline: none; border: #CED4DA solid 1px; border-radius: 0.25em; letter-spacing: 1px;
+					  			  box-shadow: inset 0 -5px 45px rgba(0,0,0,0.125), 0px 10px 14px -7px #276873; 
+					  			  -webkit-transition: box-shadow .5s ease; -moz-transition: box-shadow .5s ease; -o-transition: box-shadow .5s ease; 
+								  -ms-transition: box-shadow .5s ease; transition: box-shadow .5s ease; 
+								}
+input.inputFeld:focus	{ box-shadow: inset 0 -5px 45px rgb(255,253,230); }
+	
+	/* view/logincode.view.php / form
+	----------------------------*/
+.warnText					{ border: 1px solid white; border-radius: 8px; background-image: url('../../public/img/giter.png'); padding: 6px; }	
+div.loginCodeBox		{ display: flex; justify-content: space-between; }
+div.loginCode				{ width: 5.0em; }
+input.inputCode			{ text-align: center; font-size:1.7em; }
+div.loginButtonBox		{}
+input.loginCodeButton{ letter-spacing: 0.375em;}
 
 
+	/* view/loginsuccess.view.php
+	-------------------------------*/
+td.widthSuccess			{ width: 1px; white-space: nowrap; padding: 0.35em 0.0em; font-size: 1.1em; }	
+td.leerSuccess			{ position: relative; }	
+td.leerSuccess span 	{ position: absolute;	left: 0; right: 0; top: 0; white-space: nowrap; overflow: hidden;
+								font-size: 1.5em; letter-spacing: 5px; color: #999; 
+							    }
 
-	/* views/customer_view.php
+
+	/* views/customer.view.php
 	------------------------------*/	
 
 
@@ -65,8 +158,8 @@ input.loginInput			{ background: transparent; border: 0; padding: 5px; font-size
 
 
 
-	/* views/fehler/index.php
+	/* views/404.view.php
 	------------------------------ */
-div.fehler				{ background: #FFCCCC; border: 2px solid #FF3333; padding: 0.8em;  margin: 1.0em; box-shadow: 0px 10px 14px -7px #000; }
-div.fehlerText		{ padding: 0 0.8em; font-size: xx-large; color: #CC0000; /* border: 1px solid red; */ }	
+div.errors				{ background: #FFCCCC; border: 2px solid #FF3333; padding: 0.8em;  margin: 1.0em; box-shadow: 0px 10px 14px -7px #000; }
+div.errorsText		{ padding: 0 0.8em; font-size: xx-large; color: #CC0000; /* border: 1px solid red; */ }	
 	
